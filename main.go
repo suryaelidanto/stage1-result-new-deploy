@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/gorilla/sessions"
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
 	"golang.org/x/crypto/bcrypt"
@@ -52,6 +53,11 @@ type SessionData struct {
 var userData = SessionData{}
 
 func main() {
+	// load env first
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 	// Connect to database
 	connection.DatabaseConnect()
 
